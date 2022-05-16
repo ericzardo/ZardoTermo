@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
 
-:root {
-  --kbd-height: min(100em/2.15, 25vh);
-}
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  user-select: none;
 }
 
 html,
@@ -23,8 +21,10 @@ body {
 }
 
 .container {
+  height: 98vh;
+  position: relative;
   max-width: 720px;
-  margin: 10px auto;
+  margin: 0px auto;
 }
 
 .header {
@@ -38,17 +38,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  width: 35px;
+  height: 3.5vh;
+  width: 3.5vh;
   background: inherit;
   border: 2px solid #b7aeb4;
   border-radius: 20%;
   margin: 0 0.25vh;
   color: #b7aeb4;
   cursor: pointer;
-  font-weight: 400;
-  line-height: 1em;
-  font-size: 2vh;
 }
 
 .header span {
@@ -63,9 +60,7 @@ body {
   text-transform: uppercase;
   color: #fff;
   font-weight: 600;
-  font-size: 4vh;
-  line-height: 6vh;
-  height: 6vh;
+  font-size: 3.5vh;
 }
 
 #help-button {
@@ -93,16 +88,21 @@ body {
 
 .main {
   position: relative;
-}
-
-.board {
-  max-width: 100%;
-  max-height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5vh;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  width: 45vh;
+  height: 57vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .board .attempt {
@@ -110,7 +110,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 81px;
+  height: min(11vh, 84px);
   gap: .7vh;
   margin-bottom: 10px;
 }
@@ -120,17 +120,17 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border: 6px solid #005073;
+  border: max(min(.6vw, 6px), min(.6vh, 6px)) solid #005073;
   background: inherit;
   border-radius: 10%;
   color: #fff;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 5vh;
   opacity: 1;
 }
 
 .board #active .current {
-  border-bottom: 12px solid #005073;
+  border-bottom: max(min(calc(.6vw * 2), 12px), min(calc(.6vh * 2), 12px)) solid #005073;
 }
 
 .board #active .animated {
@@ -143,30 +143,32 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 81px;
+  width: 84px;
   background: #3f618466;
   border-radius: 13%;
   opacity: 0.4;
   color: #fff;
   font-weight: 500;
-  font-size: 22px;
   transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
 }
 
 .keyboard {
-  max-width: 100%;
-  height: var(--kbd-height);
-  font-size: min(4rem, calc(var(--kbd-height) / 14));
-  user-select: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: min(100em/2.15, 25vh);
+  font-size: min(4rem, calc(min(100em/2.15, 25vh) / 14));
   flex-shrink: 0;
   display: grid;
-  grid-gap: 0.40em;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(32, 1fr);
+  gap: .40em;
 }
 
 .keyboard button {
   touch-action: manipulation;
-  max-height: 75px;
-  max-width: 60px;
+  height: min(calc(7.66vh + 2), 75px);
+  width: min(8.1vw, 60px);
   outline: none;
   background: #005073;
   grid-column: span 3;
@@ -192,12 +194,16 @@ body {
   grid-column: 30 / span 3;
 }
 
+#backspace img {
+  width: 1em;
+}
+
 #key-z {
   grid-column: 3 / span 3;
 }
 
 #enter {
-  max-width: 175px;
+  width: min(23vw, 177px);
   grid-column: 25 / span 8;
 }
 
@@ -215,7 +221,7 @@ body {
   align-items: center;
   color: #fff;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 5vh;
 }
 
 .board .incorrect {
@@ -276,3 +282,34 @@ body {
     transform: scale(1)
   }
 }
+
+/* @keyframes flip {
+  0% {
+    background-color: transparent;
+    border: 0.125em solid #4C4347;
+    transform: perspective(200px) rotateY(0deg);
+  }
+
+  50% {
+    background-color: transparent;
+    border: 0.125em solid #4C4347;
+    transform: perspective(200px) rotateY(90deg);
+  }
+
+  50% {
+    transform: perspective(200px) rotateY(-90deg);
+    background-color: var(--color);
+    border: none;
+  }
+
+  50% {
+    background-color: var(--color);
+    border: none;
+  }
+
+  100% {
+    transform: perspective(200px) rotateY(0deg);
+    background-color: var(--color);
+  }
+
+} */

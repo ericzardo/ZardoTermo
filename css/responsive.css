@@ -1,50 +1,34 @@
-@media (max-width: 750px) {
-  .container {
-    margin: 10px 20px;
-  }
-}
-
 @media (max-width: 720px) {
-  .container {
-    margin: 5px 10px;
+  .help-box {
+    padding: 5vw;
   }
-  .board {
-    margin-bottom: 5vh;
+  .help-box p {
+    font-size:3vw;
   }
-  .board .attempt {
-    height: 76px;
-    max-height: 81px;
-  }
-  .board .letter {
-    width: 76px;
-  }
-  .board .incorrect,
-  .board .place,
-  .board .correct {
-    font-size: ;
-  }
-}
 
-@media (max-height: 670px) {
-  .container {
-    margin: 5px 10px;
+  .help-box .letter {
+    height: 6.99vw;
+    width: 6.99vw;
+    font-size: max(10px, 3.5vw);
   }
+
   .header {
-    margin-bottom: 7vh;
-  }
-  .board .attempt {
-    height: 50px;
-    max-height: 81px;
-  }
-  .board .letter {
-    width: 50px;
-  }
-  .board #active .letter {
-    border: 4.5px solid #005073;
-    font-size: 1.5em;
+    padding: 0 5px;
   }
 
-  .board #active .current {
-    border-bottom: 7px solid #005073;
+  .board .attempt {
+    height: min(14.078vw, 84px);
+  }
+
+  .board .letter {
+    width: min(14.078vw, 84px);
+  }
+
+  .keyboard {
+    padding: 0 5px;
+    gap: .30em;
+  }
+  .keyboard button {
+    font-size: 4vw;
   }
 }

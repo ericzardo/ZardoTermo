@@ -28,47 +28,6 @@
     </header>
 
     <article class="main">
-      <div class="help-box" id="help-box">
-        <p>Descubra a palavra certa em 6 tentativas. Depois de cada tentativa, as peças mostram o quão perto você está
-          da solução.</p>
-        <div class="example">
-          <span class="letter correct">C</span>
-          <span class="letter">O</span>
-          <span class="letter">I</span>
-          <span class="letter">S</span>
-          <span class="letter">A</span>
-        </div>
-        <p>A letra
-          <span class="letter correct">C</span>
-          faz parte da palavra e está na posição correta.
-        </p>
-        <div class="example">
-          <span class="letter">B</span>
-          <span class="letter">L</span>
-          <span class="letter">U</span>
-          <span class="letter place">S</span>
-          <span class="letter">A</span>
-        </div>
-        <p>A letra
-          <span class="letter place">S</span>
-          faz parte da palavra mas em outra posição.
-        </p>
-        <div class="example">
-          <span class="letter">P</span>
-          <span class="letter incorrect">O</span>
-          <span class="letter">R</span>
-          <span class="letter">T</span>
-          <span class="letter">A</span>
-        </div>
-        <p>A letra
-          <span class="letter incorrect">O</span>
-          não faz parte da palavra.
-        </p>
-        <p>As palavras podem ter letras repetidas.</p>
-        <p>As palavras podem se repetir em diferentes jogos.</p>
-
-      </div>
-
       <div class="board" id="board">
         <div class="attempt" id="active">
           <div class="letter current"></div>
@@ -138,7 +97,7 @@
       <button value="KeyJ">J</button>
       <button value="KeyK">K</button>
       <button value="KeyL">L</button>
-      <button value="Backspace" id="backspace" ce')"><i class="material-icons">backspace</i></button>
+      <button value="Backspace" id="backspace" ce')"><img src="./imgs/backspace.svg" alt=""></button>
 
       <button value="KeyZ" id="key-z">Z</button>
       <button value="KeyX">X</button>
@@ -151,7 +110,47 @@
       
 
   </div>
-  
+
+  <div class=" help-box" id="help-box">
+    <p>Descubra a palavra certa em 6 tentativas. Depois de cada tentativa, as peças mostram o quão perto você está
+      da solução.</p>
+    <div class="example">
+      <span class="letter correct">C</span>
+      <span class="letter">O</span>
+      <span class="letter">I</span>
+      <span class="letter">S</span>
+      <span class="letter">A</span>
+    </div>
+    <p>A letra
+      <span class="letter correct">C</span>
+      faz parte da palavra e está na posição correta.
+    </p>
+    <div class="example">
+      <span class="letter">B</span>
+      <span class="letter">L</span>
+      <span class="letter">U</span>
+      <span class="letter place">S</span>
+      <span class="letter">A</span>
+    </div>
+    <p>A letra
+      <span class="letter place">S</span>
+      faz parte da palavra mas em outra posição.
+    </p>
+    <div class="example">
+      <span class="letter">P</span>
+      <span class="letter incorrect">O</span>
+      <span class="letter">R</span>
+      <span class="letter">T</span>
+      <span class="letter">A</span>
+    </div>
+    <p>A letra
+      <span class="letter incorrect">O</span>
+      não faz parte da palavra.
+    </p>
+    <p>As palavras podem ter letras repetidas.</p>
+    <p>As palavras podem se repetir em diferentes jogos.</p>
+  </div>
+
   <script src=" ./main.js" type="module"></script>
 </body>
 

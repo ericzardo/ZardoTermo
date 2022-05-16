@@ -1,0 +1,58 @@
+.help-box {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  padding: 50px 30px;
+  border-radius: 15px;
+  background: #323a45;
+  position: absolute;
+  z-index: 1;
+  opacity: 1;
+  transition: background 0.2s ease-in-out;
+  animation: open-box 1s ease-in-out backwards;
+}
+
+.help-box p {
+  color: #bbb;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.35em;
+}
+
+.help-box .letter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border: 2px solid #4c4347;
+  border-radius: 10%;
+  color: #fff;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.help-box .correct,
+.help-box .place,
+.help-box .incorrect {
+  border: none;
+}
+
+.help-box .correct {
+  background: #3AA394;
+}
+
+.help-box .place {
+  background: #D3AD69;
+}
+
+.help-box .incorrect {
+  background: #191516;
+  color: #5e5c5c;
+}
+
+.help-box p .correct,
+.help-box p .place,
+.help-box p .incorrect {
+  height: 100%;
+}

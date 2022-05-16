@@ -1,0 +1,50 @@
+@media (max-width: 750px) {
+  .container {
+    margin: 10px 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .container {
+    margin: 5px 10px;
+  }
+  .board {
+    margin-bottom: 5vh;
+  }
+  .board .attempt {
+    height: 76px;
+    max-height: 81px;
+  }
+  .board .letter {
+    width: 76px;
+  }
+  .board .incorrect,
+  .board .place,
+  .board .correct {
+    font-size: ;
+  }
+}
+
+@media (max-height: 670px) {
+  .container {
+    margin: 5px 10px;
+  }
+  .header {
+    margin-bottom: 7vh;
+  }
+  .board .attempt {
+    height: 50px;
+    max-height: 81px;
+  }
+  .board .letter {
+    width: 50px;
+  }
+  .board #active .letter {
+    border: 4.5px solid #005073;
+    font-size: 1.5em;
+  }
+
+  .board #active .current {
+    border-bottom: 7px solid #005073;
+  }
+}

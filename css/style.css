@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+  --kbd-height: min(100em/2.15, 25vh);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  background: #778898;
+  font-family: "Mitr", sans-serif;
+  transition: 0.2s background ease-in-out;
+}
+
+.container {
+  max-width: 720px;
+  margin: 10px auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7vh;
+}
+
+.header div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  background: inherit;
+  border: 2px solid #b7aeb4;
+  border-radius: 20%;
+  margin: 0 0.25vh;
+  color: #b7aeb4;
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 1em;
+  font-size: 2vh;
+}
+
+.header span {
+  display: flex;
+  align-items: center;
+}
+
+.header h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 600;
+  font-size: 4vh;
+  line-height: 6vh;
+  height: 6vh;
+}
+
+#help-button {
+  background: url("../imgs/doubt-icon.ico") no-repeat;
+  background-size: 80%;
+  background-position: 50%;
+}
+
+#stats-button {
+  background: url("../imgs/stats-icon.ico") no-repeat;
+  background-size: 80%;
+  background-position: 50%;
+}
+
+#random-button {
+  background: url("../imgs/random-icon.ico") no-repeat;
+  background-size: 100%;
+}
+
+#color-button {
+  background: url("../imgs/color-icon.ico") no-repeat;
+  background-size: 80%;
+  background-position: 50%;
+}
+
+.main {
+  position: relative;
+}
+
+.board {
+  max-width: 100%;
+  max-height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.board .attempt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 81px;
+  gap: .7vh;
+  margin-bottom: 10px;
+}
+
+.board #active .letter {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 6px solid #005073;
+  background: inherit;
+  border-radius: 10%;
+  color: #fff;
+  font-weight: 600;
+  font-size: 50px;
+  opacity: 1;
+}
+
+.board #active .current {
+  border-bottom: 12px solid #005073;
+}
+
+.board #active .animated {
+  animation: typing-letter-animation 0.2s ease-in-out;
+}
+
+
+.board .letter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 81px;
+  background: #3f618466;
+  border-radius: 13%;
+  opacity: 0.4;
+  color: #fff;
+  font-weight: 500;
+  font-size: 22px;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.keyboard {
+  max-width: 100%;
+  height: var(--kbd-height);
+  font-size: min(4rem, calc(var(--kbd-height) / 14));
+  user-select: none;
+  flex-shrink: 0;
+  display: grid;
+  grid-gap: 0.40em;
+}
+
+.keyboard button {
+  touch-action: manipulation;
+  max-height: 75px;
+  max-width: 60px;
+  outline: none;
+  background: #005073;
+  grid-column: span 3;
+  display: flex;
+  font-size: 1.7em;
+  line-height: 1em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8%;
+  font-weight: 500;
+  font-family: 'Mitr', sans-serif;
+  cursor: pointer;
+  border: none;
+  color: #FAFAFF;
+  transition: background 0.2s ease-in-out;
+}
+
+#key-a {
+  grid-column: 2 / span 3;
+}
+
+#backspace {
+  grid-column: 30 / span 3;
+}
+
+#key-z {
+  grid-column: 3 / span 3;
+}
+
+#enter {
+  max-width: 175px;
+  grid-column: 25 / span 8;
+}
+
+.not-word {
+  transform: translateX(0);
+  animation: not-word-animation 0.4s backwards ease-in-out;
+  transition: transform 0.2s ease-in-out;
+}
+
+.board .incorrect,
+.board .place,
+.board .correct {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 50px;
+}
+
+.board .incorrect {
+  background: #191516 !important;
+  opacity: 0.8;
+}
+
+.board .place {
+  opacity: 1;
+  background: #D3AD69 !important;
+}
+
+.board .correct {
+  opacity: 1;
+  background: #3AA394 !important;
+}
+
+@keyframes not-word-animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(-1em);
+  }
+
+  30% {
+    transform: translateX(1em);
+  }
+
+  50% {
+    transform: translateX(-1em);
+  }
+
+  70% {
+    transform: translateX(1em);
+  }
+
+  80% {
+    transform: translateX(-1em);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes typing-letter-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}

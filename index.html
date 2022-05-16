@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zardo Termo</title>
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/help.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <header class="header">
+      <span>
+        <div id="help-button"></div>
+        <div id="color-button"></div>
+      </span>
+      <h1 class="title">ZARDO</h1>
+      <span>
+        <div id="stats-button"></div>
+        <div id="random-button"></div>
+      </span>
+    </header>
+
+    <article class="main">
+      <div class="help-box" id="help-box">
+        <p>Descubra a palavra certa em 6 tentativas. Depois de cada tentativa, as peças mostram o quão perto você está
+          da solução.</p>
+        <div class="example">
+          <span class="letter correct">C</span>
+          <span class="letter">O</span>
+          <span class="letter">I</span>
+          <span class="letter">S</span>
+          <span class="letter">A</span>
+        </div>
+        <p>A letra
+          <span class="letter correct">C</span>
+          faz parte da palavra e está na posição correta.
+        </p>
+        <div class="example">
+          <span class="letter">B</span>
+          <span class="letter">L</span>
+          <span class="letter">U</span>
+          <span class="letter place">S</span>
+          <span class="letter">A</span>
+        </div>
+        <p>A letra
+          <span class="letter place">S</span>
+          faz parte da palavra mas em outra posição.
+        </p>
+        <div class="example">
+          <span class="letter">P</span>
+          <span class="letter incorrect">O</span>
+          <span class="letter">R</span>
+          <span class="letter">T</span>
+          <span class="letter">A</span>
+        </div>
+        <p>A letra
+          <span class="letter incorrect">O</span>
+          não faz parte da palavra.
+        </p>
+        <p>As palavras podem ter letras repetidas.</p>
+        <p>As palavras podem se repetir em diferentes jogos.</p>
+
+      </div>
+
+      <div class="board" id="board">
+        <div class="attempt" id="active">
+          <div class="letter current"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div class="attempt">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div class="attempt">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div class="attempt">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div class="attempt">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div class="attempt">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+
+      </div>
+
+    </article>
+
+    <div class="keyboard" id="keyboard">
+      <button value="KeyQ">Q</button>
+      <button value="KeyW">W</button>
+      <button value="KeyE">E</button>
+      <button value="KeyR">R</button>
+      <button value="KeyT">T</button>
+      <button value="KeyY">Y</button>
+      <button value="KeyU">U</button>
+      <button value="KeyI">I</button>
+      <button value="KeyO">O</button>
+      <button value="KeyP">P</button>
+
+      <button value="KeyA" id="key-a">A</button>
+      <button value="KeyS">S</button>
+      <button value="KeyD">D</button>
+      <button value="KeyF">F</button>
+      <button value="KeyG">G</button>
+      <button value="KeyH">H</button>
+      <button value="KeyJ">J</button>
+      <button value="KeyK">K</button>
+      <button value="KeyL">L</button>
+      <button value="Backspace" id="backspace" ce')"><i class="material-icons">backspace</i></button>
+
+      <button value="KeyZ" id="key-z">Z</button>
+      <button value="KeyX">X</button>
+      <button value="KeyC">C</button>
+      <button value="KeyV">V</button>
+      <button value="KeyB">B</button>
+      <button value="KeyN">N</button>
+      <button value="KeyM">M</button>
+      <button value="Enter" id="enter"">ENTER</button>
+      
+
+  </div>
+  
+  <script src=" ./main.js" type="module"></script>
+</body>
+
+</html>

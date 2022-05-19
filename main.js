@@ -24,12 +24,14 @@ $(document).ready(() => {
       $("#stats-box").css("display", "none");
       return;
     }
+    let wins = Math.round(ZDOterm.stats.wins / ZDOterm.stats.games * 100);
+    if (isNaN(wins)) wins = 0;
     $("#stats-box").html(`
       <h2>estatísticas</h2>
       <div class= "stats-table" >
         <b id="stats-games">${ZDOterm.stats.games}</b>
         <p>jogos</p>
-        <b id="stats-wins">${Math.round(ZDOterm.stats.wins / ZDOterm.stats.games * 100)}%</b>
+        <b id="stats-wins">${wins}%</b>
         <p>de vitórias</p>
         <b id="stats-streak">${ZDOterm.stats.curstreak}</b>
         <p>sequência de vitórias</p>

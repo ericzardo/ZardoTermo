@@ -14,14 +14,19 @@ body {
   overflow: hidden;
 }
 
+html {
+  height: -webkit-fill-available;
+}
+
 body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   background: #778898;
   font-family: "Mitr", sans-serif;
   transition: 0.2s background ease-in-out;
 }
 
 .container {
-  height: 98vh;
   position: relative;
   max-width: 720px;
   margin: 0px auto;

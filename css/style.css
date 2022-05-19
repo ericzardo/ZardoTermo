@@ -27,6 +27,7 @@ body {
 }
 
 .container {
+  height: 98vh;
   position: relative;
   max-width: 720px;
   margin: 0px auto;

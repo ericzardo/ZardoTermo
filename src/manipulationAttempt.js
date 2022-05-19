@@ -1,36 +1,51 @@
-import { finalWord } from "../main.js";
+import { words } from "./data.js";
 
-const checkWord = (word) => {
-  const countLetters = {};
-
+const letterCount = (word) => {
+  const letters = {};
   for (const letter of word) {
-    if (!(letter in countLetters)) {
-      countLetters[letter] = 0;
+    if (!(letter in letters)) {
+      letters[letter.toLowerCase()] = 0;
     }
-    countLetters[letter] += 1;
+    letters[letter.toLowerCase()] += 1;
   }
-  return countLetters;
+  return letters;
 }
 
-const lettersOnWord = (word) => {
-  const classOfChar = [];
-  const chars = [];
+const checkWord = (word) => {
+  if (words.includes(word)) return true;
 
+  const letters = letterCount(word);
+
+  if (!(Object.keys(letters).length >= 2)) return false;
+  return true;
+}
+
+const lettersOnWord = (word, finalWord) => {
+  const classOfChar = [null, null, null, null, null]
+
+  const lettersCorrects = [];
 
   for (let i = 0; i < word.length; i++) {
-    const char = word[i].toLowerCase();
-    const finalChar = finalWord[i];
+    const charWord = word[i].toLowerCase();
+    const charFinalWord = finalWord[i].toLowerCase();
 
-    if (!finalWord.includes(char)) {
-      classOfChar.push("incorrect");
+    if (charWord === charFinalWord) {
+      classOfChar[i] = "correct";
+      lettersCorrects.push(charWord);
+    }
+  }
+
+  for (let i = 0; i < word.length; i++) {
+    if (classOfChar[i] !== null) continue;
+
+    const charWord = word[i].toLowerCase();
+
+    if (finalWord.includes(charWord) && !(lettersCorrects.includes(charWord))) {
+      lettersCorrects.push(charWord);
+      classOfChar[i] = "place";
       continue;
     }
-    if (char === finalChar) {
-      classOfChar.push("correct");
-      continue;
-    }
-    classOfChar.push("place");
-
+    classOfChar[i] = "incorrect";
   }
   return classOfChar;
 }

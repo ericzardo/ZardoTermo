@@ -1,181 +1,81 @@
 import "./src/storage.js";
 import { words } from "./src/data.js";
-import { getCurrentLetter, getNextVoidSpace } from "./src/getters.js";
-import { checkWord, lettersOnWord, wrongAttempt, attemptResult } from "./src/manipulationAttempt.js";
-import "./src/themeColor.js";
-import { changeSpacesColor } from "./src/themeColor.js";
+import { getCurrentLetter } from "./src/getters.js";
+import { activeCurrentLetter, keyDownLetter } from "./src/inputs.js";
 
-const finalWord = words[Math.floor(Math.random() * words.length)];
+const ZDOterm = JSON.parse(window.localStorage.getItem("ZDOterm"));
+const finalWord = words[Math.min(ZDOterm.stats.indexWord, words.length - 1)];
 
-const body = document.getElementsByTagName("body")[0];
-let attempts = document.getElementById("board").children;
-let activeAttempt = document.getElementById("active");
+const activeAttempt = document.getElementById("active");
 
-document.getElementById("help-button").addEventListener("click", e => {
-  const helpBox = document.getElementById("help-box");
-  if (helpBox.style.display !== "flex") {
-    helpBox.style.display = "flex";
-    return;
-  }
-  helpBox.style.display = "none";
-})
+$(document).ready(() => {
 
-document.getElementById("random-button").addEventListener("click", e => {
-  document.location.reload();
-})
-
-body.addEventListener("keyup", e => {
-  const currentIndexLetter = getCurrentLetter(activeAttempt.children)[1];
-
-  if (e.code === "ArrowLeft") {
-    activeCurrentLetter(Math.max(currentIndexLetter - 1, 0));
-    return;
-  }
-  if (e.code === "ArrowRight") {
-    activeCurrentLetter(Math.min(currentIndexLetter + 1, activeAttempt.children.length));
-    return;
-  }
-  keyDownLetter(e.code);
-})
-
-activeAttempt.addEventListener("click", e => {
-  for (let i = 0; i < activeAttempt.children.length; i++) {
-    const space = activeAttempt.children[i];
-    space.addEventListener("click", e => {
-      activeCurrentLetter(i);
-    })
-  }
-})
-
-const activeCurrentLetter = (index) => {
-  for (let i = 0; i < activeAttempt.children.length; i++) {
-    activeAttempt.children[i].classList.remove("current");
-  }
-  if (index < activeAttempt.children.length) {
-    activeAttempt.children[index].className = "letter current";
-  }
-}
-
-const keyDownLetter = (code) => {
-  const letter = code.slice(3);
-
-
-  if (code.toLowerCase() === "backspace") {
-    deleteCurrentLetter()
-    return;
-  }
-  if (code.toLowerCase() === "enter") {
-    sendWord()
-    return;
-  }
-  if (!(code.slice(0, 3).toLowerCase() === "key")) return;
-
-  addValueToLetter(letter);
-
-}
-
-const keyboard = document.getElementById("keyboard").children;
-for (const button of keyboard) {
-  button.addEventListener("click", e => {
-    keyDownLetter(button.value);
-  })
-}
-
-const addValueToLetter = (letter) => {
-
-  const currentLetter = getCurrentLetter(activeAttempt.children)[0];
-  const currentIndexLetter = getCurrentLetter(activeAttempt.children)[1];
-
-  if (currentLetter) {
-    currentLetter.textContent = letter;
-    currentLetter.classList += " animated"
-  }
-
-  const index = getNextVoidSpace(activeAttempt.children, currentIndexLetter);
-  activeCurrentLetter(index);
-
-}
-
-const deleteCurrentLetter = () => {
-
-  let currentLetter = getCurrentLetter(activeAttempt.children)[0];
-  let indexCurrentLetter = getCurrentLetter(activeAttempt.children)[1];
-
-  if (!currentLetter) {
-    currentLetter = activeAttempt.children[activeAttempt.children.length - 1];
-    indexCurrentLetter = activeAttempt.children.length - 1;
-  }
-  if (currentLetter.textContent !== "") {
-    currentLetter.textContent = "";
-    activeCurrentLetter(Math.max(indexCurrentLetter - 1, 0))
-    return;
-  }
-  const previousLetter = activeAttempt.children[Math.max(indexCurrentLetter - 1, 0)];
-  previousLetter.textContent = "";
-  activeCurrentLetter(Math.max(indexCurrentLetter - 1, 0))
-}
-
-const sendWord = () => {
-  let word = ""
-  console.log(finalWord);
-  for (const letter of activeAttempt.children) {
-    if (letter.textContent !== "") {
-      word += letter.textContent;
-    }
-  }
-
-  if (word.length !== activeAttempt.children.length ||
-    Object.keys(checkWord(word)).length < activeAttempt.children.length - 2) {
-
-    wrongAttempt();
-    return;
-  }
-
-  const ZDOterm = JSON.parse(window.localStorage.getItem("ZDOterm"));
-
-  if (word.toLowerCase() !== finalWord.toLowerCase()) {
-    let newIndex = 0
-
-    for (const attempt of attempts) {
-      newIndex += 1;
-      if (attempt.id == "active") {
-        attempt.removeAttribute("id");
-        break;
-      }
-    }
-
-    for (const space of activeAttempt.children) {
-      space.classList.remove("current");
-    }
-
-    const charsClasses = lettersOnWord(word);
-    attemptResult(activeAttempt, charsClasses);
-
-    attempts = document.getElementById("board").children;
-    if (newIndex >= attempts.length) {
-
-      ZDOterm.stats.curstreak = 0;
-      ZDOterm.stats.games += 1;
-      window.localStorage.setItem("ZDOterm", JSON.stringify(ZDOterm));
+  $("#help-button").on("click", () => {
+    if ($("#stats-box").is(":visible") || $("#help-box").is(":visible")) {
+      $("#help-box").css("display", "none");
       return;
     }
-    attempts[Math.min(newIndex, attempts.length - 1)].id = "active";
-    activeAttempt = document.getElementById("active");
-    changeSpacesColor();
+    $("#help-box").css("display", "flex");
+  })
 
-    activeAttempt.children[0].classList += " current";
-    return;
-  }
 
-  ZDOterm.stats.wins += 1;
-  ZDOterm.stats.games += 1;
-  ZDOterm.stats.curstreak += 1;
-  if (ZDOterm.stats.curstreak >= ZDOterm.stats.maxstreak) {
-    ZDOterm.stats.maxstreak = ZDOterm.stats.curstreak;
-  }
+  $("#stats-button").on("click", () => {
+    if ($("#stats-box").is(":visible") || $("#help-box").is(":visible")) {
+      $("#stats-box").css("display", "none");
+      return;
+    }
+    $("#stats-box").html(`
+      <h2>estatísticas</h2>
+      <div class= "stats-table" >
+        <b id="stats-games">${ZDOterm.stats.games}</b>
+        <p>jogos</p>
+        <b id="stats-wins">${Math.round(ZDOterm.stats.wins / ZDOterm.stats.games * 100)}%</b>
+        <p>de vitórias</p>
+        <b id="stats-streak">${ZDOterm.stats.curstreak}</b>
+        <p>sequência de vitórias</p>
+        <b id="stats-maxstreak">${ZDOterm.stats.maxstreak}</b>
+        <p>melhor sequência</p>
+      </div>
+    `)
+    $("#stats-box").css("display", "flex");
+  })
 
-  window.localStorage.setItem("ZDOterm", JSON.stringify(ZDOterm));
-  alert("Parabens");
-}
+  $("#random-button").on("click", () => {
+    document.location.reload();
+  })
+
+  $("body").on("keyup click", e => {
+    const currentIndexLetter = getCurrentLetter(activeAttempt.children)[1];
+
+    if (e.type === "click") {
+      if (e.target !== $("#help-button")[0] && e.target !== $("#stats-button")[0] &&
+        (!($("#stats-box").is(":visible")) || !($("#help-box").is(":visible")))) {
+
+        $("#stats-box").css("display", "none");
+        $("#help-box").css("display", "none");
+      }
+      return;
+    }
+
+    if (e.key === "ArrowLeft") {
+      activeCurrentLetter(Math.max(currentIndexLetter - 1, 0));
+      return;
+    }
+    if (e.key === "ArrowRight") {
+      activeCurrentLetter(Math.min(currentIndexLetter + 1, activeAttempt.children.length - 1));
+      return;
+    }
+    keyDownLetter(e.key);
+  })
+
+  $("#active").children("div").on("click", e => {
+    activeCurrentLetter($("#active").children("div").index(e.target));
+  })
+
+  $("#keyboard").children("button").on("click", e => {
+    e.target.value !== undefined ? keyDownLetter(e.target.value) : keyDownLetter(e.target.parentNode.value);
+  })
+
+})
 
 export { finalWord }

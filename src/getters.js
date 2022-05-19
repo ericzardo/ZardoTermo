@@ -1,5 +1,3 @@
-
-
 const getCurrentLetter = () => {
   const activeAttempt = document.getElementById("active");
   const currentLetter = [];

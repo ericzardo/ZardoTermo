@@ -7,6 +7,7 @@ const defaultStorage = {
     wins: 0,
     curstreak: 0,
     maxstreak: 0,
+    indexWord: 0,
   }
 }
 let exist = window.localStorage.getItem("ZDOterm");

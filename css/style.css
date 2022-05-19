@@ -183,7 +183,11 @@ body {
   cursor: pointer;
   border: none;
   color: #FAFAFF;
-  transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.keyboard .not-in {
+  opacity: 0.5;
 }
 
 #key-a {

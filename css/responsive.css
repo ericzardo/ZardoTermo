@@ -1,15 +1,28 @@
 @media (max-width: 720px) {
-  .help-box {
+  .help-box, .stats-box {
     padding: 5vw;
   }
-  .help-box p {
+  .help-box p, .stats-box p{
     font-size:3vw;
   }
 
-  .help-box .letter {
+  .help-box p .letter {
+    height: 5.5vw;
+    width: 5.5vw;
+  }
+
+  .help-box .letter, .example .letter {
     height: 6.99vw;
     width: 6.99vw;
     font-size: max(10px, 3.5vw);
+  }
+
+  .stats-box b {
+    font-size: max(10px, 6.3514vw);
+  }
+
+  .stats-box h2 {
+    font-size: max(10px, 3.3vw);
   }
 
   .header {
